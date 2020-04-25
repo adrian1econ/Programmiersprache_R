@@ -26,4 +26,4 @@ find_primes <- function(count){
 
 
 find_primes(5)
-find_primes(1000)
+find_primes(10)
