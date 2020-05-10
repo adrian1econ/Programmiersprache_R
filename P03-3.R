@@ -14,7 +14,7 @@ size <- function(mat) attr(mat,"size")
 
 sudoku <- function(mat, n, m){
         if(missing(m)){size(mat) <- c(n, ncol(mat)/n)
-        } else if(missing(m)){size(mat) <- c(ncol(mat)/m, m)
+        } else if(missing(n)){size(mat) <- c(ncol(mat)/m, m)
         } else{size(mat) <- c(n,m)}
         
         len <- sqrt(length(mat))
@@ -93,9 +93,9 @@ is_solved <- function(s){
 }
         
 # 7. #########################################################        
-
-
-
+is_solution_of <- function(s, s_star){
+        is_solved(s_star) && (s[!is.na(s)]==s_star[!is.na(s)])
+}
 
 
 # 8. #########################################################   
@@ -170,8 +170,9 @@ is_valid(s_na)
 
 is_solved(s_na)
 
-print_non_valid(s_na)
+is_solution_of(s_na,s)
 
+print_non_valid(s_na)
 
 s_not <- sudoku(sample(1:6, 36, replace=T), 2, 3)
 
@@ -188,6 +189,6 @@ is_valid(s_not)
 is_solved(s_not)
 
 print_non_valid(s_not, print_missing=FALSE)
-partition_index(2,3)
+
 
 
